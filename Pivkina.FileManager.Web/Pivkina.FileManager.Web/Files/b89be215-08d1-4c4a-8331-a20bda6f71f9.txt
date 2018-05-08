@@ -1,0 +1,134 @@
+DEBUG 2018-04-23 18:55:32,333 [139] AfsProvider is sending: <s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope">
+  <s:Header />
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <afsRequest xmlns="http://mbtc.ru/afs">
+      <auth>
+        <login>Elma_main_DRB</login>
+        <password>vBer3#n1Z</password>
+      </auth>
+      <action>update</action>
+      <correlationId>60affa8b-4a85-4d54-948f-1f75df004156</correlationId>
+      <sourceId>ELMA</sourceId>
+      <ruleSetId>MAIN_DRB</ruleSetId>
+      <Application>
+        <id xmlns="http://mbtc.ru/afs/application">ret_5</id>
+        <date xmlns="http://mbtc.ru/afs/application">20.04.2018 11:34:42</date>
+        <deal xmlns="http://mbtc.ru/afs/application">
+          <client>
+            <id>1112</id>
+            <person>
+              <id>1112</id>
+              <clientType>1</clientType>
+              <lastName>Минаев</lastName>
+              <firstName>Андрей</firstName>
+              <secondName>Алексеевич</secondName>
+              <birthDate>20.08.1992</birthDate>
+              <numOfChildren>0</numOfChildren>
+              <birthPlace>гор.Москва</birthPlace>
+              <sex>1</sex>
+              <doc>
+                <docType>21</docType>
+                <seriesNumber>4512 731668</seriesNumber>
+                <issueDate>01.10.2012</issueDate>
+              </doc>
+              <address>
+                <addrType>1</addrType>
+                <kladrBank>7700000000001980009</kladrBank>
+                <postalCode>109044</postalCode>
+                <region>50</region>
+                <city>Москва</city>
+                <street>ул Мельникова</street>
+                <house>17</house>
+                <apartment>68</apartment>
+                <startDate>04.02.1997</startDate>
+              </address>
+              <email>
+                <email>aaminaev@lockobank.ru</email>
+              </email>
+              <employment>
+                <incomeType>0</incomeType>
+                <confIncome>100000</confIncome>
+                <unconfIncome>100000</unconfIncome>
+                <sector>Финансы, банковское дело</sector>
+                <position>Руководитель проектов</position>
+                <duration>13</duration>
+                <employerCompany>
+                  <name>КОММЕРЧЕСКИЙ БАНК "ЛОКО-БАНК" (АКЦИОНЕРНОЕ ОБЩЕСТВО)</name>
+                  <opf>Акционерное общество</opf>
+                  <shortName>КБ "ЛОКО-БАНК" (АО)</shortName>
+                  <ogrn>1057711014195</ogrn>
+                  <inn>7750003943</inn>
+                  <kpp />
+                  <okved>64.19</okved>
+                </employerCompany>
+                <employerAddress>
+                  <addrType>3</addrType>
+                  <kladrBank>7700000000016850641</kladrBank>
+                  <postalCode>125167</postalCode>
+                  <region>50</region>
+                  <city>Москва</city>
+                  <street>Ленинградский пр-кт</street>
+                  <house>39</house>
+                  <block>80</block>
+                </employerAddress>
+              </employment>
+            </person>
+          </client>
+          <dealDetails>
+            <dealType>1</dealType>
+            <detailsCredit>
+              <creditType>9</creditType>
+              <receiptChannel>1</receiptChannel>
+              <totalCredit>30000</totalCredit>
+              <currency>RUB</currency>
+              <pledgeFlag>0</pledgeFlag>
+              <pledgeValue>0</pledgeValue>
+              <productFlag>0</productFlag>
+              <creditDate>23.04.2018</creditDate>
+              <creditDuration>13</creditDuration>
+            </detailsCredit>
+            <salePoint>
+              <code>908880079</code>
+              <address>
+                <postalCode>121099</postalCode>
+                <region>50</region>
+                <city>Москва</city>
+                <street>Смоленская ул.</street>
+                <house>6</house>
+              </address>
+              <phone>
+                <phoneType>2</phoneType>
+                <number>+7 (495) 739-55-55</number>
+              </phone>
+            </salePoint>
+          </dealDetails>
+        </deal>
+      </Application>
+    </afsRequest>
+  </s:Body>
+</s:Envelope>
+DEBUG 2018-04-23 18:55:32,417 [137] Сообщение получено провайдером AfsProvider
+DEBUG 2018-04-23 18:55:32,532 [137] Received AFS Response id = 60affa8b-4a85-4d54-948f-1f75df004156
+ERROR 2018-04-23 18:55:32,548 [137] Ошибка при обработке входящего сообщения провайдером AfsProvider
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:afs="http://mbtc.ru/afs">
+<soapenv:Body>
+<afs:afsResponse>
+<afs:action>update</afs:action>
+<afs:correlationId>60affa8b-4a85-4d54-948f-1f75df004156</afs:correlationId>
+<afs:sourceId>ELMA</afs:sourceId>
+<afs:ruleSetId>MAIN_DRB</afs:ruleSetId>
+<afs:duration>5</afs:duration>
+<afs:appId>ret_5</afs:appId>
+<afs:appVersion>3</afs:appVersion>
+</afs:afsResponse>
+</soapenv:Body>
+</soapenv:Envelope>
+System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Locko.ELMA.Integration.Components.AfsProvider.Callback(BasicDeliverEventArgs ea)
+   at Locko.ELMA.Integration.Components.AfsProvider.<Subscribe>b__13_0(BasicDeliverEventArgs ea)
+   at Locko.ELMA.Integration.Components.BaseRmqProvider.<>c__DisplayClass72_1.<SubscribeOn>b__3()
+   at EleWise.ELMA.Security.SecurityService.a1bWkIIu8CfVKK6G3P7(Object )
+   at EleWise.ELMA.Security.SecurityService.RunWithElevatedPrivilegies(Action action)
+   at EleWise.ELMA.Security.SecurityService.RunBySystemUser(Action action)
+   at Locko.ELMA.Integration.Components.BaseRmqProvider.<>c__DisplayClass72_1.<SubscribeOn>b__2()

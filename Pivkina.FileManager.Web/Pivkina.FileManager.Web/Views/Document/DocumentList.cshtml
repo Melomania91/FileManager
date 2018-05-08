@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Pivkina.FileManager.Web.Models.Document>
+@using System.Configuration;
+
+@{
+    ViewBag.Title = "Список документов";
+    var path = Server.MapPath(ConfigurationManager.AppSettings["FilePath"]);
+}
+
+<h2>Список документов</h2>
+
+<p>
+    @Html.ActionLink("Создать", "AddDocument")
+</p>
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.TextBox("SearchString")
+        <input type="submit" value="Поиск" class="btn btn-default"/>
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink(@Html.DisplayNameFor(model => model.Name).ToString(), "DocumentList", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            @Html.ActionLink(@Html.DisplayNameFor(model => model.CreationDate).ToString(), "DocumentList", new { sortOrder = ViewBag.DateSortParm })
+        </th>
+        <th>
+            @Html.ActionLink(@Html.DisplayNameFor(model => model.CreationAuthor).ToString(), "DocumentList", new { sortOrder = ViewBag.AuthorSortParm })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BinaryFile)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @if (item.Name.Trim().Length > 30)
+                {
+                    var name = item.Name.Substring(0, 30) + "...";
+                    @Html.DisplayFor(modelItem => name)
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.Name)
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationAuthor.Name)
+            </td>
+            <td>
+                <a target="_blank" href="file:///@path\@item.BinaryFile" download="@item.Name.Trim()" >@item.Name</a>
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

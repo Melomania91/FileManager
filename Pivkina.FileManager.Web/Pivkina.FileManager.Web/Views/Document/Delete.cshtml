@@ -1,0 +1,54 @@
+﻿@model Pivkina.FileManager.Web.Models.Document
+@using System.Configuration
+
+@{
+    ViewBag.Title = "Delete";
+    var path = Server.MapPath(ConfigurationManager.AppSettings["FilePath"]);
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Document</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BinaryFile)
+        </dt>
+
+        <dd>
+            @if (Model != null && !string.IsNullOrEmpty(Model.BinaryFile))
+            {
+                <a target="_blank" href="file:///localhost/@path\@Model.BinaryFile" download="@Model.Name.Trim()">@Model.Name</a>
+            }
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Назад", "DocumentList")
+        </div>
+    }
+</div>

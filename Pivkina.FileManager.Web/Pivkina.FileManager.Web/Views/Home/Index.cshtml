@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Работа с файлами</h1>
+</div>
+
+<div class="row">
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="col-md-4">
+            <h2>Перейти к списку документов</h2>
+            <p><a class="btn btn-default" href="/Document/DocumentList">Список документов &raquo;</a></p>
+        </div>
+    }
+    else
+    {
+        <div class="col-md-4">
+            <h2>Авторизоваться</h2>
+            <p>
+                Если вы уже зарегистрированы, авторизуйтесь
+            </p>
+            <p><a class="btn btn-default" href="/account/login">Войти &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Регистрация</h2>
+            <p>Если вы здесь впервые, необходимо пройти регистрацию</p>
+            <p><a class="btn btn-default" href="/account/registration">Регистрация &raquo;</a></p>
+        </div>
+    }
+</div>
